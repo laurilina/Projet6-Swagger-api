@@ -224,9 +224,18 @@ const deleteProject = id => fetch(`http://localhost:5678/api/works/${id}`, {
     .then(() => console.log(`image du work ${id} supprimée`))
     .catch(error => console.error(error))
 
-const imgADelete = document.querySelector('.container-galerie span')
 
-imgADelete.addEventListener('click', (id) => {
-    const figureDel = document.querySelector(".figure img")
-    figureDel.remove(`${id}`)
-})
+const clickAjoutImg = () => {
+    const btnSubAjout = document.querySelector('.ajou-photo label')
+    
+    // Ajout d'une nouvelle image
+    btnSubAjout.addEventListener('click', async () => {
+        const galleryAjout = document.querySelector('.gallery')
+        galleryAjout.appendChild(createNewWork)
+        const createNewWork = document.createElement('img')
+        btnSubAjout.onchange = function(){
+            createNewWork.src = URL.createObjectURL(inputFile.files[0])
+            console.log('ajout avec succ')
+        }
+    })
+}

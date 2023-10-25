@@ -424,6 +424,22 @@ input[type="submit"] {
     align-items: center;
 }
 
+.ajou-photo label {
+	display: block;
+	cursor: pointer;
+	border: none;
+    padding: 10px 27px;
+	background-color: #CBD6DC;
+	color: #306685;
+    border-radius: 50px;
+    font-weight: 600;
+    font-size: medium;
+}
+
+.ajou-photo input {
+	display: none;
+}
+
 .img-close {
 	width: 100%;
 	display: flex;
@@ -455,20 +471,6 @@ input[type="submit"] {
     flex-direction: column;
     align-items: center;
     background-color: #E8F1F6;
-}
-
-.ajou-photo button {
-    margin: 5px;
-}
-
-#btn-sub-ajout {
-	border: none;
-    padding: 10px 27px;
-	background-color: #CBD6DC;
-	color: #306685;
-    border-radius: 50px;
-    font-weight: 600;
-    font-size: medium;
 }
 
 .div-galerie h2 {
