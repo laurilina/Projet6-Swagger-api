@@ -224,3 +224,9 @@ const deleteProject = id => fetch(`http://localhost:5678/api/works/${id}`, {
     .then(() => console.log(`image du work ${id} supprimée`))
     .catch(error => console.error(error))
 
+const imgADelete = document.querySelector('.container-galerie span')
+
+imgADelete.addEventListener('click', (id) => {
+    const figureDel = document.querySelector(".figure img")
+    figureDel.remove(`${id}`)
+})
