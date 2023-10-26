@@ -37,13 +37,12 @@ const getProjects = () => fetch("http://localhost:5678/api/works")
  */
 const updateGallery = (data, gallery = galleryMain, callBack = () => { }) => {
 
-    /*console.log("méthode updateGallery(data) - data:", JSON.stringify(data, null, 2))*/
+    console.log("méthode updateGallery(data) - data:", JSON.stringify(data, null, 2))
 
     //Import et selector pour div et creation des travaux
-    // const gallery = document.querySelector(".gallery")
+    //const gallery = document.querySelector(".gallery")
 
     // Supprimer tous les éléments enfants de la gallery
-    gallery.innerHTML = ''
 
     // On parcourt chaque projet et on ajoute chaque projet à la galerie
     data.forEach(item => {
@@ -65,13 +64,13 @@ const updateGallery = (data, gallery = galleryMain, callBack = () => { }) => {
 
         // Le tout ajouter à la galerie
         gallery.appendChild(figure)
-    });
+    })
 }
 
 fetch("http://localhost:5678/api/categories")
     .then(response => response.json())
     .then(data => {
-        /*console.log("categories:", JSON.stringify(data, null, 4))*/
+        console.log("categories:", JSON.stringify(data, null, 4))
         updateFilter(data)
     })
     .catch(error => console.error(error))
@@ -111,7 +110,7 @@ const init = async () => {
     const projects = await getProjects()
     updateGallery(projects)
 
-    /*console.log("projects:", JSON.stringify(projects, null, 2))*/
+    console.log("projects:", JSON.stringify(projects, null, 2))
 }
 
 init()
@@ -225,17 +224,17 @@ const deleteProject = id => fetch(`http://localhost:5678/api/works/${id}`, {
     .catch(error => console.error(error))
 
 
-const clickAjoutImg = () => {
-    const btnSubAjout = document.querySelector('.ajou-photo label')
-    
-    // Ajout d'une nouvelle image
-    btnSubAjout.addEventListener('click', async () => {
-        const galleryAjout = document.querySelector('.gallery')
-        galleryAjout.appendChild(createNewWork)
-        const createNewWork = document.createElement('img')
-        btnSubAjout.onchange = function(){
-            createNewWork.src = URL.createObjectURL(inputFile.files[0])
-            console.log('ajout avec succ')
-        }
-    })
-}
+    const clickAjoutImg = () => {
+        const btnSubAjout = document.querySelector('.ajou-photo label')
+        
+        // Ajout d'une nouvelle image
+        btnSubAjout.addEventListener('click', async () => {
+            const galleryAjout = document.querySelector('.gallery')
+            galleryAjout.appendChild(createNewWork)
+            const createNewWork = document.createElement('img')
+            btnSubAjout.onchange = function(){
+                createNewWork.src = URL.createObjectURL(inputFile.files[0])
+                console.log('ajout avec succ')
+            }
+        })
+    }
