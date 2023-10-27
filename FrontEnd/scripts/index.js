@@ -37,7 +37,7 @@ const getProjects = () => fetch("http://localhost:5678/api/works")
  */
 const updateGallery = (data, gallery = galleryMain, callBack = () => { }) => {
 
-    console.log("méthode updateGallery(data) - data:", JSON.stringify(data, null, 2))
+    /*console.log("méthode updateGallery(data) - data:", JSON.stringify(data, null, 2))*/
 
     //Import et selector pour div et creation des travaux
     //const gallery = document.querySelector(".gallery")
@@ -70,7 +70,7 @@ const updateGallery = (data, gallery = galleryMain, callBack = () => { }) => {
 fetch("http://localhost:5678/api/categories")
     .then(response => response.json())
     .then(data => {
-        console.log("categories:", JSON.stringify(data, null, 4))
+        /*console.log("categories:", JSON.stringify(data, null, 4))*/
         updateFilter(data)
     })
     .catch(error => console.error(error))
@@ -110,7 +110,7 @@ const init = async () => {
     const projects = await getProjects()
     updateGallery(projects)
 
-    console.log("projects:", JSON.stringify(projects, null, 2))
+    /*console.log("projects:", JSON.stringify(projects, null, 2))*/
 }
 
 init()
@@ -231,9 +231,10 @@ const deleteProject = id => fetch(`http://localhost:5678/api/works/${id}`, {
         btnSubAjout.addEventListener('click', async () => {
             const galleryAjout = document.querySelector('.gallery')
             galleryAjout.appendChild(createNewWork)
-            const createNewWork = document.createElement('img')
+            
+            const createNewWork = document.querySelector(".image-update")
             btnSubAjout.onchange = function(){
-                createNewWork.src = URL.createObjectURL(inputFile.files[0])
+                createNewWork.src = URL.createObjectURL(btnSubAjout.files[0])
                 console.log('ajout avec succ')
             }
         })
