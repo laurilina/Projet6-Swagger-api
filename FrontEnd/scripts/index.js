@@ -1,3 +1,11 @@
+
+/**
+ * Method to delete project
+ * 
+ * @param {HTMLElement} figure 
+ * @param {HTMLElement} figCaption 
+ * @param {Number} id 
+ */
 const deleteWork = (figure, figCaption, id) => {
     figure.style.position = "relative"
 
@@ -23,9 +31,7 @@ const deleteWork = (figure, figCaption, id) => {
 const galleryMain = document.querySelector(".gallery")
 const galleryModal = document.querySelector('.container-galerie')
 
-const getProjects = () => fetch("http://localhost:5678/api/works")
-    .then(response => response.json())
-    .catch(error => console.error(error))
+
 
 /**
  * Mise à jour de la galerie en parcourant le tableau des projets data passé
@@ -40,9 +46,10 @@ const updateGallery = (data, gallery = galleryMain, callBack = () => { }) => {
     /*console.log("méthode updateGallery(data) - data:", JSON.stringify(data, null, 2))*/
 
     //Import et selector pour div et creation des travaux
-    //const gallery = document.querySelector(".gallery")
+    // const gallery = document.querySelector(".gallery")
 
     // Supprimer tous les éléments enfants de la gallery
+    gallery.innerHTML = ''
 
     // On parcourt chaque projet et on ajoute chaque projet à la galerie
     data.forEach(item => {
@@ -64,16 +71,8 @@ const updateGallery = (data, gallery = galleryMain, callBack = () => { }) => {
 
         // Le tout ajouter à la galerie
         gallery.appendChild(figure)
-    })
+    });
 }
-
-fetch("http://localhost:5678/api/categories")
-    .then(response => response.json())
-    .then(data => {
-        /*console.log("categories:", JSON.stringify(data, null, 4))*/
-        updateFilter(data)
-    })
-    .catch(error => console.error(error))
 
 const updateFilter = data => {
 
@@ -84,7 +83,8 @@ const updateFilter = data => {
     button.innerHTML = 'Tous'
     filter.appendChild(button)
     button.addEventListener('click', async () => {
-        const projects = await getProjects()
+        const projects = await getProjects().then(data => data)
+        console.log(projects)
         updateGallery(projects)
     })
 
@@ -110,7 +110,10 @@ const init = async () => {
     const projects = await getProjects()
     updateGallery(projects)
 
-    /*console.log("projects:", JSON.stringify(projects, null, 2))*/
+    const categories = await getCategories()
+    updateFilter(categories)
+
+    // console.log("projects:", JSON.stringify(projects, null, 2))
 }
 
 init()
@@ -146,7 +149,6 @@ mondalW.appendChild(imgRetourModal)
 imgRetourModal.src = "./assets/icons/arrow-left.png"
 imgRetourModal.alt = " arrow left - retour "
 imgRetourModal.addEventListener('click', () => {
-    ajoutModal.style.display = 'none'
     modal.style.display = "block"
     modal2.style.display = 'none'
 })
@@ -216,26 +218,14 @@ if (localStorage.token) {
     updateConnect()
 }
 
-const deleteProject = id => fetch(`http://localhost:5678/api/works/${id}`, {
-    method: 'DELETE',
-    headers: { 'Authorization': `Bearer ${localStorage.token}` }
-})
-    .then(() => console.log(`image du work ${id} supprimée`))
-    .catch(error => console.error(error))
-
-
-    const clickAjoutImg = () => {
-        const btnSubAjout = document.querySelector('.ajou-photo label')
-        
-        // Ajout d'une nouvelle image
-        btnSubAjout.addEventListener('click', async () => {
-            const galleryAjout = document.querySelector('.gallery')
-            galleryAjout.appendChild(createNewWork)
-            
-            const createNewWork = document.querySelector(".image-update")
-            btnSubAjout.onchange = function(){
-                createNewWork.src = URL.createObjectURL(btnSubAjout.files[0])
-                console.log('ajout avec succ')
-            }
-        })
-    }
+const clickAjoutImg = () => {
+    // Ajout d'une nouvelle image
+    const btnSubAjout = document.querySelector('.ajou-photo label')
+    const createNewWork = document.querySelector('.ajou-photo img')
+    btnSubAjout.addEventListener('click', async () => {
+        btnSubAjout.onchange = function () {
+            createNewWork.src = URL.createObjectURL(btnSubAjout.files[0])
+            console.log('ajout avec succ')
+        }
+    })
+}

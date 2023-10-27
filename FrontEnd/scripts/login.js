@@ -8,18 +8,10 @@ form.addEventListener('submit', e => {
     console.log('email:', email.value)
     console.log('password:', password.value)
 
-    fetch('http://localhost:5678/api/users/login', {
-        method: 'post',
-        headers: {
-            'accept': 'application/json',
-            'Content-Type': 'application/json'
-        },
-        body: JSON.stringify({
-            "email": email.value,
-            "password": password.value
-        })
+    postLogin({
+        "email": email.value,
+        "password": password.value
     })
-        .then(res => res.json())
         .then(data => {
             console.log(JSON.stringify(data, null, 2))
             localStorage.token = data.token

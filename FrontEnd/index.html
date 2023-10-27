@@ -95,12 +95,12 @@
 				</div>
 				<div class="container-form">
 					<div class="ajou-photo">
-						<img class="image-update" src="./assets/icons/picture.png" alt="icon galerie">
+						<img id="ajout-src" src="./assets/icons/picture.png" alt="icon galerie">
 						<label id="btn-sub-ajout" for="btn-sub-input">+ Ajouter photo</label>
 						<input type="file" name="btn-sub-input" id="btn-sub-input" accept="image/jpg, image/png">
 						<p>jpg, png : 4mo max</p>
 					</div>
-					<form class="formul" action="#" method="post">
+					<form class="formul" enctype="multipart/form-data">
 						<label for="titre">Titre</label>
 						<input type="text" id="titre">
 						<label for="category">Catégories</label>
@@ -121,6 +121,7 @@
 		</nav>
 	</footer>
 
+	<script src="./scripts/api.js"></script>
 	<script src="./scripts/index.js"></script>
 </body>
 
