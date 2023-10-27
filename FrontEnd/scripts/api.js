@@ -34,14 +34,21 @@ const deleteProject = id => fetch(`${WORK_URL}/${id}`, {
 
 
     // Fetch post add work
-const addWork = image => fetch(`${WORK_URL}/${image}`, {
+const addWork = id => fetch(`${WORK_URL}/${id}`, {
     method: 'POST',
     headers: {
     'accept': 'application/json',
     'Content-Type': 'application/json'
-    }
+    },
+    body: JSON.stringify(
+        {
+            title: ' ',
+            image: src,
+            category: 'select'
+        }
+    )
 })
-    .then(() => console.log(`image du work ${image} add`))
+    .then(() => console.log(`image du work ${id} add`))
     .catch(error => console.error(error))
 
     

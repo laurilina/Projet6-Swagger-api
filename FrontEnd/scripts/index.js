@@ -224,7 +224,7 @@ const clickAjoutImg = () => {
     const createNewWork = document.querySelector('.ajou-photo img')
     btnSubAjout.addEventListener('click', async () => {
         btnSubAjout.onchange = function () {
-            createNewWork.src = URL.createObjectURL(btnSubAjout.files[0])
+            createNewWork.src = URL.createObjectURL(btnSubAjout[0])
             console.log('ajout avec succ')
         }
     })
