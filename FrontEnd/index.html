@@ -69,48 +69,49 @@
 				<input type="submit" value="Envoyer">
 			</form>
 		</section>
-
-		<aside id="modal1" class="modal" aria-hidden="true" role="dialog" aria-labelledby="titlemodal">
-			<div class="mondal-wrapper">
-				<div class="img-close">
-					<img src="./assets/icons/xmark.png" alt="close-modal">
-				</div>
-				<div class="div-galerie">
-					<h2 id="titlemodal">Galerie photo</h2>
-					<div id="gallery2" class="container-galerie gallery">
-						<!--Import depuis le js (img)-->
+		<section class="modal-ferme">
+			<aside id="modal1" class="modal" class="modal" aria-hidden="true" role="dialog">
+				<div class="mondal-wrapper" aria-hidden="true" role="dialog" aria-labelledby="titlemodal">
+					<div class="img-close">
+						<img src="./assets/icons/xmark.png" alt="close-modal">
 					</div>
-				</div>
-				<hr>
-				<a href="#modal2">
-					<input class="btn-sub" type="submit" value="Ajouter une photo">
-				</a>
-			</div>
-		</aside>
-
-		<aside id="modal2" class="modal2" aria-hidden="true" role="dialog" aria-labelledby="titlemodal">
-			<div class="mondal-wrapper ajout">
-				<div class="img-close-retour">
-					<!--importer js -->
-				</div>
-				<div class="container-form">
-					<div class="ajou-photo">
-						<img id="ajout-src" src="./assets/icons/picture.png" alt="icon galerie">
-						<label id="btn-sub-ajout" for="btn-sub-input">+ Ajouter photo</label>
-						<input type="file" name="btn-sub-input" id="btn-sub-input" accept="image/jpg, image/png">
-						<p>jpg, png : 4mo max</p>
+					<div class="div-galerie">
+						<h2 id="titlemodal">Galerie photo</h2>
+						<div id="gallery2" class="container-galerie gallery">
+							<!--Import depuis le js (img)-->
+						</div>
 					</div>
-					<form class="formul" enctype="multipart/form-data">
-						<label for="titre">Titre</label>
-						<input type="text" id="titre">
-						<label for="category">Catégories</label>
-						<input type="text" id="category">
-					</form>
 					<hr>
-					<input type="submit" value="Valider">
+					<a href="#modal2">
+						<input class="btn-sub" type="submit" value="Ajouter une photo">
+					</a>
 				</div>
-			</div>
-		</aside>
+			</aside>
+
+			<aside id="modal2" class="modal2">
+				<div class="mondal-wrapper ajout" aria-hidden="true" role="dialog" aria-labelledby="titlemodal">
+					<div class="img-close-retour">
+						<!--importer js -->
+					</div>
+					<div class="container-form">
+						<div class="ajou-photo">
+							<img id="ajout-src" src="./assets/icons/picture.png" alt="icon galerie">
+							<label id="btn-sub-ajout" for="btn-sub-input">+ Ajouter photo</label>
+							<input type="file" name="btn-sub-input" id="btn-sub-input" accept="image/jpg, image/png">
+							<p>jpg, png : 4mo max</p>
+						</div>
+						<form class="formul" enctype="multipart/form-data">
+							<label for="titre">Titre</label>
+							<input type="text" id="titre">
+							<label for="category">Catégories</label>
+							<input type="text" id="category">
+						</form>
+						<hr>
+						<input type="submit" value="Valider">
+					</div>
+				</div>
+			</aside>
+		</section>
 	</main>
 
 	<footer>
