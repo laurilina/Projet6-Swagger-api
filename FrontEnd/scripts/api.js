@@ -33,7 +33,7 @@ const deleteProject = id => fetch(`${WORK_URL}/${id}`, {
 
 
 
-    // Fetch post add work
+   /* // Fetch post add work
 const addWork = id => fetch(`${WORK_URL}/${id}`, {
     method: 'POST',
     headers: {
@@ -51,4 +51,4 @@ const addWork = id => fetch(`${WORK_URL}/${id}`, {
     .then(() => console.log(`image du work ${id} add`))
     .catch(error => console.error(error))
 
-    
+    */

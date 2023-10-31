@@ -43,7 +43,7 @@ const galleryModal = document.querySelector('.container-galerie')
  */
 const updateGallery = (data, gallery = galleryMain, callBack = () => { }) => {
 
-    /*console.log("méthode updateGallery(data) - data:", JSON.stringify(data, null, 2))*/
+    console.log("méthode updateGallery(data) - data:", JSON.stringify(data, null, 2))
 
     //Import et selector pour div et creation des travaux
     // const gallery = document.querySelector(".gallery")
@@ -219,10 +219,13 @@ if (localStorage.token) {
 }
 
 const clickAjoutImg = () => {
-    // Ajout d'une nouvelle image
     const btnSubAjout = document.querySelector('.ajou-photo label')
-    const createNewWork = document.querySelector('.ajou-photo img')
+
+    // Ajout d'une nouvelle image
     btnSubAjout.addEventListener('click', async () => {
+        const galleryAjout = document.querySelector('.gallery')
+        galleryAjout.appendChild(createNewWork)
+        const createNewWork = document.querySelector('.ajou-photo img')
         btnSubAjout.onchange = function () {
             createNewWork.src = URL.createObjectURL(btnSubAjout.files[0])
             console.log('ajout avec succ')
