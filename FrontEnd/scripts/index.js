@@ -222,12 +222,14 @@ const clickAjoutImg = () => {
     const btnSubAjout = document.querySelector('.ajou-photo label')
 
     // Ajout d'une nouvelle image
-    btnSubAjout.addEventListener('click', async () => {
+    btnSubAjout.addEventListener('change', async () => {
         const galleryAjout = document.querySelector('.gallery')
         galleryAjout.appendChild(createNewWork)
-        const createNewWork = document.querySelector('.ajou-photo img')
+
+        const createNewWork = document.createElement('.ajou-photo img')
         btnSubAjout.onchange = function () {
-            createNewWork.src = URL.createObjectURL(btnSubAjout.files[0])
+            const imgAjoutSrc = document.getElementById('ajout-src')
+            imgAjoutSrc.src = URL.createObjectURL(btnSubAjout.files[0])
             console.log('ajout avec succ')
         }
     })
