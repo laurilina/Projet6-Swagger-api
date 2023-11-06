@@ -115,8 +115,6 @@ const updateConnect = () => {
     }
 }
 
-
-
 if (localStorage.token) {
     updateConnect()
 }

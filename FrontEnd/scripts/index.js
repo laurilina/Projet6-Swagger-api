@@ -156,6 +156,10 @@ formAddWork.addEventListener('submit', e => {
     formData.append('category', selectValue)
     postWork(formData).then(() => console.log("ajout d'un nouveau travail"))
 
-    //mettre a jour le dom, apres ajout du work
-
 })
+
+
+//mettre a jour le dom, apres ajout du work
+const misAJourDomWork = () => {
+    galleryMain.append(file)
+}
