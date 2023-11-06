@@ -1,3 +1,10 @@
+const imgAjoutSrc = document.getElementById('ajout-src')
+const fileUpload = document.getElementById('btn-sub-input')
+const labelFileUpload = document.getElementById("btn-sub-ajout")
+const fileUploadP = document.querySelector('.ajou-photo p')
+const selectCategory = document.getElementById('select-category')
+const formAddWork = document.getElementById('form-add-work')
+const title = document.getElementById('titre')
 
 /**
  * Method to delete project
@@ -135,9 +142,27 @@ btnModalClose.addEventListener('click', () => {
     modal2.style.display = 'none'
 })
 
+const resetModal2 = () => {
+    imgAjoutSrc.src = './assets/icons/picture.png'
+    labelFileUpload.style.display = 'block'
+    fileUploadP.style.display = 'block'
+}
+
+const createSelectCategory = async () => {
+    const categories = await getCategories()
+    categories.forEach(item => {
+        const option = document.createElement('option')
+        option.value = item.id
+        option.innerHTML = item.name
+        selectCategory.appendChild(option)
+    })
+}
+
 btnAjoutPhoto.addEventListener('click', () => {
     modal.style.display = 'none'
     modal2.style.display = 'block'
+    resetModal2()
+    createSelectCategory()
 })
 
 const ajoutModal = document.querySelector('.ajout')
@@ -218,19 +243,33 @@ if (localStorage.token) {
     updateConnect()
 }
 
-const clickAjoutImg = () => {
-    const btnSubAjout = document.querySelector('.ajou-photo label')
 
-    // Ajout d'une nouvelle image
-    btnSubAjout.addEventListener('change', async () => {
-        const galleryAjout = document.querySelector('.gallery')
-        galleryAjout.appendChild(createNewWork)
 
-        const createNewWork = document.createElement('.ajou-photo img')
-        btnSubAjout.onchange = function () {
-            const imgAjoutSrc = document.getElementById('ajout-src')
-            imgAjoutSrc.src = URL.createObjectURL(btnSubAjout.files[0])
-            console.log('ajout avec succ')
-        }
-    })
-}
+
+// Ajout d'une nouvelle image
+fileUpload.addEventListener('change', () => {
+    const file = fileUpload.files[0]
+    imgAjoutSrc.src = URL.createObjectURL(file)
+    console.log('file:', file)
+
+    // faire disparaitre les éléments label et p
+    labelFileUpload.style.display = 'none'
+    fileUploadP.style.display = 'none'
+})
+
+// evenement qui se déclenche à la soumission du formulaire
+formAddWork.addEventListener('submit', e => {
+    // evenement pour empecher l'actualisation de la page
+    e.preventDefault()
+
+    const formData = new FormData()
+    const file = fileUpload.files[0]
+
+    const titleValue = title.value
+    const selectValue = parseInt(selectCategory.value)
+
+    formData.append('image', file)
+    formData.append('title', titleValue)
+    formData.append('category', selectValue)
+    postWork(formData).then(() => console.log("ajout d'un nouveau travail"))
+})

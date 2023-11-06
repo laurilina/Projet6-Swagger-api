@@ -11,7 +11,7 @@ const getCategories = () => get(CATEGORY_URL)
 
 
 
-    // Fetch data login
+// Fetch data login
 const postLogin = data => fetch(LOGIN_URL, {
     method: 'post',
     headers: {
@@ -23,7 +23,7 @@ const postLogin = data => fetch(LOGIN_URL, {
 
 
 
-    // Fetch Delete id work
+// Fetch Delete id work
 const deleteProject = id => fetch(`${WORK_URL}/${id}`, {
     method: 'DELETE',
     headers: { 'Authorization': `Bearer ${localStorage.token}` }
@@ -33,22 +33,30 @@ const deleteProject = id => fetch(`${WORK_URL}/${id}`, {
 
 
 
-   /* // Fetch post add work
+/* // Fetch post add work
 const addWork = id => fetch(`${WORK_URL}/${id}`, {
-    method: 'POST',
-    headers: {
-    'accept': 'application/json',
-    'Content-Type': 'application/json'
-    },
-    body: JSON.stringify(
-        {
-            title: ' ',
-            image: src,
-            category: 'select'
-        }
-    )
+ method: 'POST',
+ headers: {
+ 'accept': 'application/json',
+ 'Content-Type': 'application/json'
+ },
+ body: JSON.stringify(
+     {
+         title: ' ',
+         image: src,
+         category: 'select'
+     }
+ )
 })
-    .then(() => console.log(`image du work ${id} add`))
-    .catch(error => console.error(error))
+ .then(() => console.log(`image du work ${id} add`))
+ .catch(error => console.error(error))
 
-    */
+ */
+
+const postWork = data => fetch(WORK_URL, {
+    method: 'post',
+    body: data,
+    headers: {
+        'Authorization': `Bearer ${localStorage.token}`
+    }
+}).then(res => res.json())    
