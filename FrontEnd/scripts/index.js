@@ -162,4 +162,7 @@ formAddWork.addEventListener('submit', e => {
 //mettre a jour le dom, apres ajout du work
 const misAJourDomWork = () => {
     galleryMain.append(file)
+    formAddWork.addEventListener("click", () => {
+    location.reload();
+  });
 }
