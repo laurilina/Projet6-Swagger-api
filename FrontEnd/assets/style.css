@@ -379,6 +379,20 @@ input[type="submit"] {
 	border: none;
 }
 
+#color-valide {
+	background-color: #A7A7A7;
+}
+
+@media (forced-colors: active) {
+	[aria-disabled="false"] {
+		background-color: #1D6154;
+	}
+	[aria-disabled="true"] {
+		background-color: #A7A7A7;
+	}
+}
+
+
 /*aside party*/
 
 .modal {
@@ -442,7 +456,7 @@ input[type="submit"] {
 	border: none;
 	padding: 10px 27px;
 	background-color: #CBD6DC;
-	color: #306685;
+	color: #1D6154;
 	border-radius: 50px;
 	font-weight: 600;
 	font-size: medium;
