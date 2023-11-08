@@ -99,18 +99,17 @@
 								<img id="ajout-src" src="./assets/icons/picture.png" alt="icon galerie">
 								<label id="btn-sub-ajout" for="btn-sub-input">+ Ajouter photo</label>
 								<input type="file" name="btn-sub-input" id="btn-sub-input"
-									accept="image/jpeg, image/png">
+									accept="image/jpeg, image/png" aria-labelledby="btn-sub-ajout">
 								<p>jpg, png : 4mo max</p>
 							</div>
-							<span id="file-error">Merci de charger une image au format jpg, jpeg ou png inférieur à 4
-								Mo</span>
-							<label for="titre">Titre</label>
-							<input type="text" id="titre">
-							<label for="select-category">Catégories</label>
-							<select name="select-category" id="select-category">
+							<span id="file-error">Merci de charger une image au format jpg, jpeg ou png inférieur à 4Mo</span>
+							<label for="titre" aria-labelledby="titre">Titre</label>
+							<input type="text" id="titre" required aria-required="true">
+							<label for="select-category"  aria-labelledby="select-category">Catégories</label>
+							<select name="select-category" id="select-category" required aria-required="true">
 							</select>
 							<hr>
-							<input type="submit" value="Valider">
+							<input type="submit" value="Valider" aria-disabled="true">
 						</form>
 					</div>
 				</div>
