@@ -126,18 +126,29 @@ const init = async () => {
 init()
 
 
-
-
+const checkFileType = type => {
+    const acceptImg = ['image/jpeg', 'image/png']
+    return acceptImg.includes(type)
+}
 
 // Ajout d'une nouvelle image
 fileUpload.addEventListener('change', () => {
     const file = fileUpload.files[0]
-    imgAjoutSrc.src = URL.createObjectURL(file)
-    console.log('file:', file)
 
-    // faire disparaitre les éléments label et p
-    labelFileUpload.style.display = 'none'
-    fileUploadP.style.display = 'none'
+    if (file.size > 4000000 || !checkFileType(file.type)) {
+        fileError.style.display = 'block'
+        // imgAjoutSrc.style.height = '100%'
+    } else {
+        imgAjoutSrc.src = URL.createObjectURL(file)
+        console.log('file:', file)
+
+        // faire disparaitre les éléments label et p
+        labelFileUpload.style.display = 'none'
+        fileUploadP.style.display = 'none'
+        // imgAjoutSrc.style.height = 'unset'
+        fileError.style.display = 'none'
+    }
+
 })
 
 // evenement qui se déclenche à la soumission du formulaire
@@ -154,15 +165,13 @@ formAddWork.addEventListener('submit', e => {
     formData.append('image', file)
     formData.append('title', titleValue)
     formData.append('category', selectValue)
-    postWork(formData).then(() => console.log("ajout d'un nouveau travail"))
+    postWork(formData)
+        .then(() => getProjects())
+        .then(data => {
+            updateGallery(data)
+            modal.style.display = 'none'
+            modal2.style.display = 'none'
+        })
 
 })
 
-
-//mettre a jour le dom, apres ajout du work
-const misAJourDomWork = () => {
-    galleryMain.append(file)
-    formAddWork.addEventListener("click", () => {
-    location.reload();
-  });
-}

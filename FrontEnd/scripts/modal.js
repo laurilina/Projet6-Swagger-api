@@ -1,5 +1,6 @@
 //MISE A JOUR DE LA MODAL APRES LOGIN
 const loginA = document.getElementById('loginA')
+const fileError = document.getElementById('file-error')
 
 loginA.addEventListener('click', () => {
     localStorage.removeItem('token')
@@ -20,10 +21,15 @@ const resetModal2 = () => {
     imgAjoutSrc.src = './assets/icons/picture.png'
     labelFileUpload.style.display = 'block'
     fileUploadP.style.display = 'block'
+    fileError.style.display = 'none'
 }
 
 
 const createSelectCategory = async () => {
+    selectCategory.innerHTML = ''
+    const option = document.createElement('option')
+    option.value = 0
+    selectCategory.appendChild(option)
     const categories = await getCategories()
     categories.forEach(item => {
         const option = document.createElement('option')
